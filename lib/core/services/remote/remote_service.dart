@@ -37,8 +37,8 @@ class RemoteServiceImpl implements RemoteService {
       } else {
         throw ServerFailure(ErrorConstants.serverError);
       }
-    } on DioException catch (e) {
-      debugPrint(e.message);
+    } catch (e) {
+      debugPrint(e.toString());
       throw ServerFailure(ErrorConstants.serverError);
     }
   }
