@@ -11,6 +11,8 @@ abstract class RemoteService {
   });
 }
 
+const String apiKey =
+    String.fromEnvironment('WEATHER_API_KEY', defaultValue: '');
 final int codeOK = 200;
 
 class RemoteServiceImpl implements RemoteService {
@@ -27,10 +29,7 @@ class RemoteServiceImpl implements RemoteService {
       String url = ApiUrlConstants.getApiUrl(path);
       final response = await _dio.get(
         url,
-        queryParameters: {
-          ...?queryParameters,
-          "appid": "201cdaf52b5e8ea208b43580c7099ae4"
-        },
+        queryParameters: {...?queryParameters, "appid": apiKey},
       );
       if (response.statusCode == codeOK) {
         return response.data;
